@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    ViewData["Title"] = "Login";
+    //Layout = null;
+}
+
+<div style="padding:100px 100px 10px;">
+    <form class="bs-example bs-example-form" role="form" method="post">
+        <div class="form-group">
+            <label for="name">用户名：</label>
+            <input id="txtUserName" name="na" type="text" class="form-control" placeholder="请输入用户名" />
+        </div>
+        <div class="form-group">
+            <label for="name">密码：</label>
+            <input id="txtPwd" name="pw" type="text" class="form-control" placeholder="请输入密码" />
+        </div>
+        <button type="button"class="btn btn-default" onclick="EncryptionPassword();">加密</button>
+        <button type="submit" class="btn btn-default">提交</button>
+        <p id="pubkey">@ViewData["publicKey"]</p>
+       </form>
+</div>
+
+@section Scripts{ 
+
+    <script type="text/javascript">
+        function EncryptionPassword() {
+            var publicKey = $("#pubkey").text();
+            alert(publicKey);
+                //"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDM1ycX6VaBbSbL5BPUTcSN6k0ETJPO9AJyO5dFqhPAXcFSTXhkN6QiWfpoT4N33uueQ3I241aX8d7N36FPcGr7xAH+jpLTQfV/INoc3wOEzKoOrCRGtyEfl7rbE3kDpA6sXOhGDEOw3zkMH5XvoKq4KDcdYrG8PQkDeBtiNL/6GQIDAQAB";
+            var pwd = $("#txtPwd").val();
+            //alert(pwd);
+            // Encrypt with the public key...
+            var encrypt = new JSEncrypt();
+            encrypt.setPublicKey(publicKey);
+            var encrypted = encrypt.encrypt(pwd);
+            alert(encrypted);
+            $("#txtPwd").val(encrypted);
+        }
+    </script>
+    
+}

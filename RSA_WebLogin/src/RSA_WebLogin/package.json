@@ -1,0 +1,9 @@
+{
+  "version": "1.0.0",
+  "name": "asp.net",
+  "private": true,
+  "devDependencies": {
+    "jsencrypt": "3.0.0-beta.1"
+  },
+  "dependencies": {}
+}
